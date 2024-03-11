@@ -1,4 +1,4 @@
 # Sudoku
 
 
-Wird die Tage nochmal überarbeitet! 
+Logik schonmal fertig. Kann als Sudoku solver verwendet werden, jedoch ist das generieren noch nicht fertig.

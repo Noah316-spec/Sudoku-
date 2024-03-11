@@ -29,7 +29,7 @@ namespace Sodoku
         
         void reset()
         {
-            for (int i = 1; i <= 81; i++)
+            for (int i = 1; i <= 81; i++) 
             {
                 Control[] textBoxes = this.Controls.Find("textBox" + i, true);
                 if (textBoxes.Length > 0) // überprüfen ob es das steuerelement gibt 
@@ -37,23 +37,26 @@ namespace Sodoku
                     TextBox textBox = textBoxes[0] as TextBox;
                     if (textBox != null)
                     {
-                        textBox.Text = "";
+                        textBox.Text = ""; // clearen von allen 81 textboxen 
+                        // or textBox.Clear();
                     }
                 }
             }
         }
         private void Form1_Load(object sender, EventArgs e)
         {
-            reset();
-            comboBox2.SelectedIndex = 0;
+            reset(); // Textboxen.text leeren
+            comboBox2.SelectedIndex = 0; // Standard 6x6 auswählen
         }
         private void abfragebereiche()
         {
+            // Deklaration und Initialisierung
             bool isValid = true;
             HashSet<int>[] rows = new HashSet<int>[9];
             HashSet<int>[] columns = new HashSet<int>[9];
             HashSet<int>[] boxes = new HashSet<int>[9];
-
+            
+            // Erstellung der HashSets für jede Zeile, Spalte und Box
             for (int i = 0; i < 9; i++)
             {
                 rows[i] = new HashSet<int>();
@@ -66,27 +69,33 @@ namespace Sodoku
                 Control[] textBoxes = this.Controls.Find("textBox" + i, true);
                 if (textBoxes.Length > 0)
                 {
-                    TextBox textBox = textBoxes[0] as TextBox;
+                    TextBox textBox = textBoxes[0] as TextBox;        
+                    // Textbox in eine Zahl konvertieren
                     int textBoxText;
                     bool isNumeric = int.TryParse(textBox.Text, out textBoxText);
+                    
+                    //Konvertierung erfolgreich und Zahl im gültigen Bereich 
                     if (!isNumeric || textBoxText < 1 || textBoxText > 9)
                     {
                         isValid = false;
                         break;
                     }
-
+                    
+                     // Berechne Indizes Zeile, Spalte und Box
                     int row = (i - 1) / 9;
                     int column = (i - 1) % 9;
                     int box = (row / 3) * 3 + column / 3;
-
+                    
+                    // Überprüfe, ob die Zahl bereits in der entsprechenden Zeile, Spalte oder Box vorhanden ist
                     if (!rows[row].Add(textBoxText) || !columns[column].Add(textBoxText) || !boxes[box].Add(textBoxText))
                     {
+                        //wenn die Zahl bereits vorhanden ist
                         isValid = false;
                         break;
                     }
                 }
             }
-
+            // Nachricht anzeigen wenn es Sudoku gelöst oder nicht gelöst wurde!
             if (isValid)
             {
                 MessageBox.Show("Gelöst!");
@@ -99,22 +108,24 @@ namespace Sodoku
         }
         private void btnStart_Click(object sender, EventArgs e)
         {
+            // Deklaration und Initialisierung
             int i = 0;
-            Random rnd = new Random();
+            Random rnd = new Random(); // random definieren
+            
             if(comboBox2.SelectedIndex == 0) // Auswahl Combobox2 6x6
             {
-                while (i != 6)
+                while (i != 6) // 6 mal ausführen
                 {
                     
-                    int rndbutton = auswahl6x6[rnd.Next(auswahl6x6.Length)];
+                    int rndbutton = auswahl6x6[rnd.Next(auswahl6x6.Length)]; // random zahl nur in dem Bereich 
                     int rndnum = rnd.Next(1, 9);
-                    Control[] textBoxes = this.Controls.Find("textBox" + rndbutton, true);
+                    Control[] textBoxes = this.Controls.Find("textBox" + rndbutton, true); // steuerelement suchen
                     if (textBoxes.Length > 0) // überprüfen ob es das steuerelement gibt 
                     {
                         TextBox textBox = textBoxes[0] as TextBox;
                         if (textBox != null)
                         {
-                            textBox.Text = Convert.ToString(rndnum);
+                            textBox.Text = Convert.ToString(rndnum); // der Text des Steuerelements wird mit einer random zahl beschrieben
                         }
                     }
                     i++;
@@ -122,10 +133,10 @@ namespace Sodoku
             }
             else// Auswahl Combobox2 9x9
             {
-                while (i != 9)
+                while (i != 9) // 9 mal ausführen
                 {
 
-                    int rndbutton = rnd.Next(1, 81);
+                    int rndbutton = rnd.Next(1, 81); // alle textboxen werden ausgewählt 
                     int rndnum = rnd.Next(1, 9);
                     Control[] textBoxes = this.Controls.Find("textBox" + rndbutton, true);
                     if (textBoxes.Length > 0) // überprüfen ob es das steuerelement gibt 
@@ -133,7 +144,7 @@ namespace Sodoku
                         TextBox textBox = textBoxes[0] as TextBox;
                         if (textBox != null)
                         {
-                            textBox.Text = Convert.ToString(rndnum);
+                            textBox.Text = Convert.ToString(rndnum);// der Text des Steuerelements wird mit einer random zahl beschrieben
                         }
                     }
                     i++;
@@ -147,9 +158,9 @@ namespace Sodoku
        
     private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (comboBox2.SelectedIndex == 0)
+            if (comboBox2.SelectedIndex == 0) // jede Zahl die außerhalb des 6x6 feldes liegt soll nicht Visible sein.
             {
-                foreach (int number in auswahl6x6)
+                foreach (int number in auswahl6x6) 
                 {
                     Control[] textBoxes = this.Controls.Find("textBox" + number, true);
                     if (textBoxes.Length > 0) // überprüfen ob es das steuerelement gibt 
@@ -163,7 +174,7 @@ namespace Sodoku
 
                 }
             }
-            else 
+            else  // jede Zahl die außerhalb des 6x6 feldes liegt soll Visible sein.
             {
                 foreach (int number in auswahl6x6)
                 {

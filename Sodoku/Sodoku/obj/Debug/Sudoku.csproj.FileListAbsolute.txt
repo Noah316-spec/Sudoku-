@@ -1,0 +1,10 @@
+C:\Users\nassnode\source\repos\Sodoku\Sodoku\bin\Debug\Sodoku.exe.config
+C:\Users\nassnode\source\repos\Sodoku\Sodoku\bin\Debug\Sodoku.exe
+C:\Users\nassnode\source\repos\Sodoku\Sodoku\bin\Debug\Sodoku.pdb
+C:\Users\nassnode\source\repos\Sodoku\Sodoku\obj\Debug\Sudoku.csproj.AssemblyReference.cache
+C:\Users\nassnode\source\repos\Sodoku\Sodoku\obj\Debug\Sodoku.Form1.resources
+C:\Users\nassnode\source\repos\Sodoku\Sodoku\obj\Debug\Sodoku.Properties.Resources.resources
+C:\Users\nassnode\source\repos\Sodoku\Sodoku\obj\Debug\Sudoku.csproj.GenerateResource.cache
+C:\Users\nassnode\source\repos\Sodoku\Sodoku\obj\Debug\Sudoku.csproj.CoreCompileInputs.cache
+C:\Users\nassnode\source\repos\Sodoku\Sodoku\obj\Debug\Sodoku.exe
+C:\Users\nassnode\source\repos\Sodoku\Sodoku\obj\Debug\Sodoku.pdb

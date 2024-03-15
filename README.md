@@ -35,6 +35,11 @@ This C# Windows Forms application provides a simple Sudoku solver. It allows use
 - `Sodoku.csproj`: Project file.
 - `bin/` and `obj/`: Folders containing build artifacts and temporary files.
 
+### HashSet 
+
+The advantage of a hashset is that you have faster access to the data and it does not store duplicate values. Adding values is easier than in other data structures.
+The use of hashset is used to find out the duplication of data or simply not to have duplicate values in a hashset. 
+
 
 ### How to Run:
 1. Clone this repository to your local machine.

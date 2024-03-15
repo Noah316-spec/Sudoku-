@@ -1,4 +1,4 @@
-### Sudoku Solver
+# Sudoku Solver
 
 This C# Windows Forms application provides a simple Sudoku solver. It allows users to input numbers into a grid and validates whether the solution is correct. The program also includes a timer feature to track solving time and offers options to generate random Sudoku puzzles for both 6x6 and 9x9 grids.
 

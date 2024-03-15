@@ -6,7 +6,7 @@ This C# Windows Forms application provides a simple Sudoku solver. It allows use
 
 ![image](https://github.com/Noah316-spec/Sudoku-Spiel-Solver-Generator-/assets/106232024/a73c7e34-dbed-47cd-adc9-8644fb06af52)
 
-### Features:
+## Features:
 - **Grid Selection:** Users can choose between a 6x6 and a 9x9 grid for Sudoku puzzles.
 - **Random Puzzle Generation:** The program can generate random Sudoku puzzles for both grid sizes.
 - **Solver:** Users can input their solution into the grid 
@@ -14,7 +14,7 @@ This C# Windows Forms application provides a simple Sudoku solver. It allows use
 - **Timer:** The application includes a timer that tracks solving time.
 - **Reset:** Provides an option to clear the grid and start over.
 
-### How to Use:
+## How to Use:
 1. **Select Grid Size:** Choose between a 6x6 and a 9x9 grid using the dropdown menu.
 2. **Generate Puzzle:** Click the "Start" button to generate a random puzzle.
 
@@ -28,20 +28,20 @@ This C# Windows Forms application provides a simple Sudoku solver. It allows use
 7. **Reset:** Click the "Reset" button to clear the grid and start over.
 9. **Timer:** The timer at the top of the interface displays the elapsed time since the puzzle started.
 
-### File Structure:
+## File Structure:
 - `Form1.cs`: Contains the main code for the Windows Forms application.
 - `Form1.Designer.cs`: Automatically generated file for the visual design of the form.
 - `Form1.resx`: Resource file.
 - `Sodoku.csproj`: Project file.
 - `bin/` and `obj/`: Folders containing build artifacts and temporary files.
 
-### HashSet 
+## HashSet 
 
 The advantage of a hashset is that you have faster access to the data and it does not store duplicate values. Adding values is easier than in other data structures.
 The use of hashset is used to find out the duplication of data or simply not to have duplicate values in a hashset. 
 
 
-### How to Run:
+## How to Run:
 1. Clone this repository to your local machine.
 2. Open the solution file (`Sodoku.sln`) in Visual Studio.
 3. Build and run the project.

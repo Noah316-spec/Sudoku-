@@ -46,14 +46,14 @@ The use of hashset is used to find out the duplication of data or simply not to 
 2. Open the solution file (`Sodoku.sln`) in Visual Studio.
 3. Build and run the project.
 
-### Contributions:
+## Contributions:
 Contributions are welcome! If you'd like to contribute to this project, please fork the repository, make your changes, and submit a pull request.
 
-### License:
+## License:
 This project is licensed under the [MIT License](LICENSE).
 
-### Acknowledgments:
+## Acknowledgments:
 - This project was developed by me.
 
-### Contact:
+## Contact:
 For any inquiries or issues, please contact.

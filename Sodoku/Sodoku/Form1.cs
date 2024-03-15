@@ -121,7 +121,7 @@ namespace Sodoku
       
         private void btnStart_Click(object sender, EventArgs e)
         {
-            timer2.Start();
+            
             // Deklaration und Initialisierung
             int i = 0;
             Random rnd = new Random(); // random definieren
@@ -204,8 +204,99 @@ namespace Sodoku
 
         private void btnSolve_Click(object sender, EventArgs e)
         {
-            abfragebereiche();
             
+            TextBox[,] board = new TextBox[9, 9];
+
+            // Füllen Sie das Array mit Ihren TextBoxen
+            int counter = 1;
+            for (int i = 0; i < 9; i++)
+            {
+                for (int j = 0; j < 9; j++)
+                {
+                    board[i, j] = (TextBox)this.Controls["textBox" + counter];
+                    counter++;
+                }
+            }
+
+            // Jetzt können Sie die Sudoku-Lösungsfunktion aufrufen
+            bool solved = SolveSudoku(board);
+
+        }
+        public bool SolveSudoku(TextBox[,] board)
+        {
+            for (int row = 0; row < 9; row++)
+            {
+                for (int col = 0; col < 9; col++)
+                {
+                    // Wir suchen eine leere Zelle
+                    if (board[row, col].Text == "")
+                    {
+                        // Wir versuchen mögliche Zahlen
+                        for (int number = 1; number <= 9; number++)
+                        {
+                            if (CanPlace(board, row, col, number))
+                            {
+                                // Die Nummer wurde platziert
+                                board[row, col].Text = number.ToString();
+
+                                // Wir rufen die Funktion rekursiv auf, um den Rest des Rasters zu füllen
+                                if (SolveSudoku(board))
+                                {
+                                    return true;
+                                }
+
+                                // Wenn die Platzierung dieser Zahl zu einer ungültigen Lösung führt, setzen wir die Zelle zurück
+                                board[row, col].Text = "";
+                            }
+                        }
+
+                        // Wenn keine Zahl platziert werden kann, kehren wir zur vorherigen Zelle zurück
+                        return false;
+                    }
+                }
+            }
+
+            // Das Rätsel wurde gelöst
+            return true;
+        }
+
+        public bool CanPlace(TextBox[,] board, int row, int col, int number)
+        {
+            string numStr = number.ToString();
+
+            // Überprüfen der Zeile
+            for (int i = 0; i < 9; i++)
+            {
+                if (board[row, i].Text == numStr)
+                {
+                    return false;
+                }
+            }
+
+            // Überprüfen der Spalte
+            for (int i = 0; i < 9; i++)
+            {
+                if (board[i, col].Text == numStr)
+                {
+                    return false;
+                }
+            }
+
+            // Überprüfen der Box
+            int startRow = row - row % 3;
+            int startCol = col - col % 3;
+            for (int i = 0; i < 3; i++)
+            {
+                for (int j = 0; j < 3; j++)
+                {
+                    if (board[i + startRow, j + startCol].Text == numStr)
+                    {
+                        return false;
+                    }
+                }
+            }
+
+            return true;
         }
 
         private void btnres_Click(object sender, EventArgs e)
@@ -218,9 +309,79 @@ namespace Sodoku
             label3.Text = DateTime.Now.ToString("HH:mm:ss"); // Aktualisiert den Text der TextBox bei jedem Tick
         }
 
-        private void timer2_Tick(object sender, EventArgs e)
+        private int GetColumn(int textBoxNumber)
         {
-           
+            if (textBoxNumber % 9 == 0)
+            {
+                return 8;
+            }
+            else
+            {
+                return (textBoxNumber % 9) - 1;
+            }
+        }
+        private int GetRow(int textBoxNumber)
+        {
+            return (textBoxNumber - 1) / 9;
+        }
+        private void button1_Click(object sender, EventArgs e) // Prüfen 
+        {
+            // Deklaration und Initialisierung
+            bool isValid = true;
+            HashSet<int>[] rows = new HashSet<int>[9];
+            HashSet<int>[] columns = new HashSet<int>[9];
+
+            // Erstellung der HashSets für jede Zeile und Spalte
+            for (int i = 0; i < 9; i++)
+            {
+                rows[i] = new HashSet<int>();
+                columns[i] = new HashSet<int>();
+            }
+
+            // Überprüfung der Zeilen und Spalten
+            for (int i = 1; i <= 81; i++)
+            {
+                
+                Control[] textBoxes = this.Controls.Find("textBox" + i, true);
+                if (textBoxes.Length > 0)
+                {
+                    TextBox textBox = textBoxes[0] as TextBox;
+                    // Textbox in eine Zahl konvertieren
+                    int textBoxText;
+                    bool isNumeric = int.TryParse(textBox.Text, out textBoxText);
+                    
+                    // Konvertierung erfolgreich und Zahl im gültigen Bereich 
+                    if (textBoxText < 1 || textBoxText > 9)
+                    {
+                        isValid = false;
+                        break;
+                    }
+
+                    // Füge die Zahl in die entsprechende Zeile und Spalte ein
+                    int row = GetRow(i);
+                    int column = GetColumn(i);
+
+                    // Überprüfe, ob die Zahl bereits in der entsprechenden Zeile oder Spalte vorhanden ist
+                    if (!rows[row].Add(textBoxText) || !columns[column].Add(textBoxText))
+                    {
+                        // Wenn die Zahl bereits vorhanden ist
+                        isValid = false;
+                        break;
+                        
+                    }
+                }
+            }
+            
+            // Nachricht anzeigen, wenn das Sudoku gelöst wurde oder nicht!
+            if (isValid)
+            {
+                MessageBox.Show("Gelöst!");
+            }
+            else
+            {
+                MessageBox.Show("Schau nochmal drüber, da ist wohl etwas falsch !");
+            }
+            
         }
     }
 }

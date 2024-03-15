@@ -9,7 +9,8 @@ This C# Windows Forms application provides a simple Sudoku solver. It allows use
 ### Features:
 - **Grid Selection:** Users can choose between a 6x6 and a 9x9 grid for Sudoku puzzles.
 - **Random Puzzle Generation:** The program can generate random Sudoku puzzles for both grid sizes.
-- **Solver:** Users can input their solution into the grid and check if it's correct.
+- **Solver:** Users can input their solution into the grid 
+- **Check:** Check if it's correct.
 - **Timer:** The application includes a timer that tracks solving time.
 - **Reset:** Provides an option to clear the grid and start over.
 
